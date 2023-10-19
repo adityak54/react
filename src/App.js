@@ -1,25 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+
+let cn = "App-header"; 
+
+/* React me functions ko hi as a component use karte hain */
+// functional component ko ham html tags ki tarah use karte hain
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={cn}>
+      Hello World
+
+      {/* niche Dummy ko as a HTML tag use kiye hain */}
+      {/* <Dummy></Dummy> */}
+      <Dummy />  
     </div>
   );
+}
+
+function Dummy(){ 
+  return(
+    <div className = {cn}> 
+      Dummy
+    </div>
+  )
 }
 
 export default App;
