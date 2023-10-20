@@ -1,28 +1,31 @@
-import './App.css';
+import './App.css'
+import Video from "./components/Video"
 
-let cn = "App-header"; 
-
-/* React me functions ko hi as a component use karte hain */
-// functional component ko ham html tags ki tarah use karte hain
-
+let obj = {
+  title: "ReactJs Tutorial",
+  img : "https://loremflickr.com/g/320/240/paris",
+  channel : "xyz",
+  views : "100k"
+}
 function App() {
   return (
-    <div className={cn}>
-      Hello World
+    <div>
+      <h1>Videos</h1>
+      {/* basically jaise html me attributes dete the waise hi yaha props dete hain */}
+      {/* html:attributes::react:props */}
+      
+      {/* yaha ham normally propls pass kar rahe */}
+      <Video 
+      title={"NodeJs Tutorial" } 
+      img={"https://loremflickr.com/p/320/240/paris"}
+      channel='abc'
+      views='100k'
+      />
 
-      {/* niche Dummy ko as a HTML tag use kiye hain */}
-      {/* <Dummy></Dummy> */}
-      <Dummy />  
-    </div>
-  );
-}
-
-function Dummy(){ 
-  return(
-    <div className = {cn}> 
-      Dummy
+      {/* yaha niche ham spread operator ke through ek object me props pass kar rahe */}
+      <Video {...obj}/> 
     </div>
   )
 }
-
-export default App;
+// export default app {yaha lowercase allowed hai. End me jaha render kar rahe waha nahi.}
+export default App

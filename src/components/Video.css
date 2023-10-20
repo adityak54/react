@@ -1,0 +1,25 @@
+.vid{
+    width: 15em;
+    font-size: 1em;
+    float: left;  
+    margin: 0 0.2em;
+    height: 100vr;
+    align-items: center;
+}
+
+.pic img{
+    width: 100%;
+}
+.title{
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+
+.channel, .views{
+    font-size: small;
+    margin-bottom: 0.2em;
+}
+
+.views span{
+    padding: 0 0.5em;
+}
