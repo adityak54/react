@@ -1,31 +1,34 @@
 import './App.css'
+import PlayButton from './components/PlayButton'
 import Video from "./components/Video"
-
-let obj = {
-  title: "ReactJs Tutorial",
-  img : "https://loremflickr.com/g/320/240/paris",
-  channel : "xyz",
-  views : "100k"
-}
+import videodata from "./data/data"
 function App() {
+  {onclick}
   return (
-    <div>
+    <div onClick={()=>console.log("Parent-Div Clicked")}>
       <h1>Videos</h1>
-      {/* basically jaise html me attributes dete the waise hi yaha props dete hain */}
-      {/* html:attributes::react:props */}
+      {
+      videodata.map(function(video){
+      return<Video 
+      key={video.id} 
+      title={video.title} 
+      img={video.img}
+      channel={video.channel}
+      views={video.views}
+      verified={video.verified}
+      >
+      {/* yaha PlayButton ko as a child pass kar diye isse uniquely har ek video ke liye alag alag ban jayega */}
+      {/* in sab ka play and pause bhi alag alag hi print hoga */}
+      <PlayButton 
+      onPlay={()=>console.log(`Playing ${video.title}`)} 
+      onPause={()=>console.log(`Paused ${video.title}`)}>{video.title}</PlayButton>
+      </Video>}
       
-      {/* yaha ham normally propls pass kar rahe */}
-      <Video 
-      title={"NodeJs Tutorial" } 
-      img={"https://loremflickr.com/p/320/240/paris"}
-      channel='abc'
-      views='100k'
-      />
-
-      {/* yaha niche ham spread operator ke through ek object me props pass kar rahe */}
-      <Video {...obj}/> 
+      )}
+      {/* <PlayButton onSmash={()=>console.log("Playy")}>PLAY</PlayButton> */}
+      {/* <PlayButton onSmash={()=>alert("Pause")}>PAUSE</PlayButton> */}
+      
     </div>
   )
 }
-// export default app {yaha lowercase allowed hai. End me jaha render kar rahe waha nahi.}
 export default App
