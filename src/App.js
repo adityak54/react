@@ -1,14 +1,35 @@
+import { useState } from 'react'
 import './App.css'
+import Counter from './components/Counter'
 import PlayButton from './components/PlayButton'
 import Video from "./components/Video"
 import videodata from "./data/data"
 function App() {
-  {onclick}
+
+  //---------------------------------------------------------------------------------------------
+  // iski madad se ham dynamically new video component add kar rahe
+  const [video, setVideo] = useState(videodata);
+  function buttonClicked(){
+    // video.push({id:video.length+1,title: "Demo Tutorial",img : "https://loremflickr.com/g/320/240/pakistan",channel : "abc",views : "100k",verified : false})
+    // setVidep(video)
+    // The above method will not work kyuki setter function me ham copy bhejte hain
+
+    // we can do that using spread operator
+    setVideo([...video,{
+      id:video.length+1,
+    title: "Demo Tutorial",
+    img : "https://loremflickr.com/g/320/240/pakistan",
+    channel : "abc",
+    views : "100k",
+    verified : false
+    }])
+  }
+  //---------------------------------------------------------------------------------------------
   return (
-    <div onClick={()=>console.log("Parent-Div Clicked")}>
-      <h1>Videos</h1>
+    <div>
+      <button onClick={buttonClicked}>Add Video</button>
       {
-      videodata.map(function(video){
+      video.map(function(video){
       return<Video 
       key={video.id} 
       title={video.title} 
@@ -17,17 +38,15 @@ function App() {
       views={video.views}
       verified={video.verified}
       >
-      {/* yaha PlayButton ko as a child pass kar diye isse uniquely har ek video ke liye alag alag ban jayega */}
-      {/* in sab ka play and pause bhi alag alag hi print hoga */}
       <PlayButton 
       onPlay={()=>console.log(`Playing ${video.title}`)} 
       onPause={()=>console.log(`Paused ${video.title}`)}>{video.title}</PlayButton>
       </Video>}
-      
-      )}
-      {/* <PlayButton onSmash={()=>console.log("Playy")}>PLAY</PlayButton> */}
-      {/* <PlayButton onSmash={()=>alert("Pause")}>PAUSE</PlayButton> */}
-      
+      )}  
+      <div style={{clear:"both"}}>
+
+      <Counter></Counter>
+      </div>
     </div>
   )
 }
