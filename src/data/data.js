@@ -4,7 +4,7 @@ let videodata = [{
     img : "https://loremflickr.com/g/320/240/india",
     channel : "abc",
     views : "100k",
-    verified : false
+    verified : true
   },
   {
     id:2,
