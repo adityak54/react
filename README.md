@@ -1,3 +1,8 @@
+# How to transfer state in sibling components
+#                Parent
+#             /          \
+#         Sibling-1     Sibling-2
+ Basically we will transfer the state to the parent and then pass it to the other sibling using props
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
