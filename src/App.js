@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import './App.css'
 import Counter from './components/Counter'
-import PlayButton from './components/PlayButton'
-import Video from "./components/Video"
+
 import videodata from "./data/data"
 import AddVideo from './components/AddVideo'
+import VideoList from './components/VideoList'
 
 function App() {
 
@@ -23,20 +23,8 @@ function App() {
         this is called STATE UPLIFTING
         ham basically parent ke state ko badal rahe by using its function indirectly */}
       <AddVideo addVideos={addVideos} />
-      {
-      video.map(function(v){
-        return <Video 
-          key={v.id} 
-          title={v.title} 
-          img={v.img}
-          channel={v.channel}
-          views={v.views}
-          verified={v.verified}
-        > 
-        <PlayButton>{v.title}</PlayButton>
-      </Video>}
-      )
-      }  
+      <VideoList video={video}/>
+      
       <div style={{clear:"both"}}>
       <Counter></Counter>
       </div>

@@ -42,8 +42,8 @@ function AddVideo ({addVideos})  {
 
                 {/* we can do this for rest of the inputs as well */}
                 {/* we need to use value={video.channel} abs value={video.views} */}
-        <input name='channel' onChange={handleChange} type='text' placeholder='Channel'/>
-        <input name='views' onChange={handleChange} type='text' placeholder='Views'/>
+        <input value={video.channel} name='channel' onChange={handleChange} type='text' placeholder='Channel'/>
+        <input value={video.views} name='views' onChange={handleChange} type='text' placeholder='Views'/>
         <button onClick={handleClick}>Add Video</button>
     </form>
   )
