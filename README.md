@@ -1,4 +1,7 @@
 # Getting Started with Create React App
+# What we learned
+-> useEffect ke through hamne delete ka function laaya (iske bina bhi kar sakte hain)
+-> basically props ke through state manage kiya parent,child aur siblings me
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
