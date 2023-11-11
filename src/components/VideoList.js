@@ -2,7 +2,7 @@ import React from 'react'
 import PlayButton from './PlayButton'
 import Video from "./Video"
 
-function VideoList({video}){
+function VideoList({video,deleteVideo,editVideo}){
   return (
     <div>
         {
@@ -14,6 +14,9 @@ function VideoList({video}){
           channel={v.channel}
           views={v.views}
           verified={v.verified}
+          id={v.id}
+          deleteVideo={deleteVideo}
+          editVideo={editVideo}
         > 
         <PlayButton>{v.title}</PlayButton>
       </Video>}

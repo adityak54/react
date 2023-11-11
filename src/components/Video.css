@@ -5,6 +5,7 @@
     margin: 0 0.2em;
     height: 100vr;
     align-items: center;
+    position: relative;
 }
 
 .pic img{
@@ -23,6 +24,16 @@
 .views span{
     padding: 0 0.7em;
 }
-.views{
-    
+
+.close{
+    position: absolute;
+    right: 0;
+    font-weight: 700;
+    font-style: bold;
+}
+.edit{
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+    font-style: bold;
 }
