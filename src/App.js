@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useReducer, useState } from 'react'
 import './App.css'
 import Counter from './components/Counter'
 
@@ -7,45 +7,66 @@ import AddVideo from './components/AddVideo'
 import VideoList from './components/VideoList'
 
 function App() {
-    /* Chapter-7 me hamne edit aur delete feature add kiya and learned about useEffect hook*/
   //---------------------------------------------------------------------------------------------
-  
-  const [video, setVideo] = useState(videodata);
   const [editableVideo, setEditableVideo] = useState(null);
- 
-  function addVideos(v){
-    setVideo([...video,
-      {...v, id: video.length+1}])
-  }
-  function deleteVideo(id){
-    setVideo(video.filter(function(v){
-      return(
-        v.id!=id // jiski bhi id match hogi wo chhod ke sab show hoga
-      )
-    }))
-  }
   function editVideo(id){
-    // jab bhi edit waala button click hoga, ham editableVideo me ye value daal denge
-    // ye value fir prop ke through ham AddVideos me le jaayenge aur form ko update kar denge
     setEditableVideo(video.find(function(it){
       return it.id==id;
     }))
   }
+  //------------------------------------useReducer hook---------------------------------
 
-  function updateVideo(v){
-    let temp = [...video];
-    const index = temp.findIndex(function(it){
-      return it.id==v.id;
-    })
-    temp[index] = v;
-    setVideo(temp);
-    // console.log(temp);
+  // Reducer function 
+  function videoReducer(video,action){
+    switch(action.type){
+      case 'ADD' : return [...video,
+        {...action.payload, id: video.length+1}]
+        
+        case 'DELETE' : return video.filter(function(v){
+        return(
+          v.id!=action.payload 
+          )
+      })
+      
+      case 'UPDATE' : 
+      let temp = [...video];
+      const index = temp.findIndex(function(it){
+        return it.id==action.payload.id;
+      })
+      temp[index] = action.payload;
+      setEditableVideo(null)
+      return temp;
+
+      default :return video;
+    }
   }
+  // const [video, setVideo] = useState(videodata);
+  
+  // hamne add,update aur delete ko ek me kar diya using useReducer hook
+  const [video,dispatch] = useReducer(videoReducer,videodata);
+  /* SYNTAX: 
+
+    video -> jiska hame reducer chahiye
+    dispatch -> iske through ham reducer function ko call karenge (sirf issi ko prop ke through
+                bhejenge aur alag alag type ke calls kar lenge)
+    videoReducer -> ye hamara reducer function hai. Isme ham logic likhenge alag alag type ke calls ke liye
+                    ye basically state return karta hai
+    videodata -> initial value (jiska ham reducer bana rahe)
+
+    SYNTAX OF dispatch :
+    eg) dispatch({type:'DELETE', payload:id}) do parameteres hote hain -> type and payload
+        type -> isse ham batate hain ki reducer function jab call hoga to kaun sa functionality chahiye
+        payload -> wo chiiz jisme change aane ke karad ham state badalna chah rahe
+  */
+  
+
+
+  
   //---------------------------------------------------------------------------------------------
   return (
     <div>
-      <AddVideo addVideos={addVideos} updateVideo={updateVideo} editableVideo={editableVideo}/>
-      <VideoList deleteVideo={deleteVideo} video={video} editVideo={editVideo}/>
+      <AddVideo dispatch={dispatch} editableVideo={editableVideo}/>
+      <VideoList dispatch={dispatch} video={video} editVideo={editVideo}/>
       
       <div style={{clear:"both"}}>
       <Counter></Counter>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './AddVideo.css'
 
-function AddVideo ({addVideos,updateVideo,editableVideo})  {
+function AddVideo ({dispatch,editableVideo})  {
     let initialState = { 
         title:'',
         views:'',
@@ -13,9 +13,11 @@ function AddVideo ({addVideos,updateVideo,editableVideo})  {
     function handleClick(e){
         e.preventDefault(); 
         if(editableVideo){
-            updateVideo(video);
+            // updateVideo(video);
+            dispatch({type: 'UPDATE', payload:video})
         }else{
-            addVideos(video); 
+            // addVideos(video); 
+            dispatch({type: 'ADD', payload:video})
         }
         setVideo(initialState)
     }
