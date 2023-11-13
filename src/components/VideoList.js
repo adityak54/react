@@ -1,8 +1,10 @@
 import React from 'react'
 import PlayButton from './PlayButton'
 import Video from "./Video"
+import useVideo from '../hooks/videohook'
 
-function VideoList({video,editVideo,dispatch}){
+function VideoList({editVideo}){
+  const video = useVideo();  // custom hook
   return (
     <div>
         {
@@ -16,7 +18,6 @@ function VideoList({video,editVideo,dispatch}){
           verified={v.verified}
           id={v.id}
           editVideo={editVideo}
-          dispatch={dispatch}
         > 
         <PlayButton>{v.title}</PlayButton>
       </Video>}

@@ -6,6 +6,8 @@ import videodata from "./data/data"
 import AddVideo from './components/AddVideo'
 import VideoList from './components/VideoList'
 import ThemeContext from './context/ThemeContext'
+import VideoContext from './context/VideoContext'
+import DistpatchContext from './context/DispatchContext'
 
 function App() {
 
@@ -56,17 +58,21 @@ function App() {
 
     // value -> dena compulsory hai, this is the initial value
     <ThemeContext.Provider value={mode}>
+    <VideoContext.Provider value={video}>
+      <DistpatchContext.Provider value={dispatch}>
 
     <div className={`App ${mode}`}>
     {/* ek button bana liya jisse ham darkMode aur lightMode me switch karenge */}
     <button onClick={()=>{(mode==='darkMode') ? mode='lightMode' : mode='darkMode'; setMode(mode)} }>Mode</button>
-      <AddVideo dispatch={dispatch} editableVideo={editableVideo}/>
-      <VideoList dispatch={dispatch} video={video} editVideo={editVideo}/>
+      <AddVideo  editableVideo={editableVideo}/>
+      <VideoList editVideo={editVideo}/>
       
       <div style={{clear:"both"}}>
       <Counter></Counter>
       </div>
     </div>
+      </DistpatchContext.Provider>
+    </VideoContext.Provider>
     </ThemeContext.Provider>
   )
 }

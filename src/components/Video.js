@@ -1,9 +1,11 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import './Video.css'
 import ThemeContext from '../context/ThemeContext'
+import useDispatch from '../hooks/dispatchHook'
 
-function Video({title,id,img,channel,views,verified,children,editVideo,dispatch}){
+function Video({title,id,img,channel,views,verified,children,editVideo}){
     const mode = useContext(ThemeContext)
+    const dispatch = useDispatch(); // custom hook
     return(
         <>
         <div className="vid">

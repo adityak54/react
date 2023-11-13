@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import './AddVideo.css'
+import useDispatch from '../hooks/dispatchHook';
 
-function AddVideo ({dispatch,editableVideo})  {
+function AddVideo ({editableVideo})  {
+    const dispatch = useDispatch();
     let initialState = { 
         title:'',
         views:'',
