@@ -32,8 +32,12 @@
     font-style: bold;
 }
 .edit{
-    position: absolute;
+    position: absolute; 
     left: 0;
     font-weight: 700;
     font-style: bold;
+}
+
+.title.darkMode, .views.darkMode, .channel.darkMode{
+    color: white;
 }

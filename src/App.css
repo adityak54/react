@@ -1,0 +1,12 @@
+.App{
+    height: 100vh;
+    width: 100%;
+}
+
+.App.darkMode{
+    background-color: black;
+}
+
+.App.lightMode{
+    background-color: white;
+}

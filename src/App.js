@@ -1,12 +1,19 @@
-import { useReducer, useState } from 'react'
+import { useContext, useReducer, useState } from 'react'
 import './App.css'
 import Counter from './components/Counter'
 
 import videodata from "./data/data"
 import AddVideo from './components/AddVideo'
 import VideoList from './components/VideoList'
+import ThemeContext from './context/ThemeContext'
 
 function App() {
+
+  const themeContext = useContext(ThemeContext)
+  // console.log({themeContext});
+
+  let [mode,setMode] = useState('darkMode');
+
   //---------------------------------------------------------------------------------------------
   const [editableVideo, setEditableVideo] = useState(null);
   function editVideo(id){
@@ -40,31 +47,14 @@ function App() {
       default :return video;
     }
   }
-  // const [video, setVideo] = useState(videodata);
-  
-  // hamne add,update aur delete ko ek me kar diya using useReducer hook
   const [video,dispatch] = useReducer(videoReducer,videodata);
-  /* SYNTAX: 
 
-    video -> jiska hame reducer chahiye
-    dispatch -> iske through ham reducer function ko call karenge (sirf issi ko prop ke through
-                bhejenge aur alag alag type ke calls kar lenge)
-    videoReducer -> ye hamara reducer function hai. Isme ham logic likhenge alag alag type ke calls ke liye
-                    ye basically state return karta hai
-    videodata -> initial value (jiska ham reducer bana rahe)
-
-    SYNTAX OF dispatch :
-    eg) dispatch({type:'DELETE', payload:id}) do parameteres hote hain -> type and payload
-        type -> isse ham batate hain ki reducer function jab call hoga to kaun sa functionality chahiye
-        payload -> wo chiiz jisme change aane ke karad ham state badalna chah rahe
-  */
-  
-
-
-  
   //---------------------------------------------------------------------------------------------
   return (
-    <div>
+    <ThemeContext.Provider value={mode}>
+
+    <div className={`App ${mode}`}>
+    <button onClick={()=>{(mode==='darkMode') ? mode='lightMode' : mode='darkMode'; setMode(mode)} }>Mode</button>
       <AddVideo dispatch={dispatch} editableVideo={editableVideo}/>
       <VideoList dispatch={dispatch} video={video} editVideo={editVideo}/>
       
@@ -72,6 +62,7 @@ function App() {
       <Counter></Counter>
       </div>
     </div>
+    </ThemeContext.Provider>
   )
 }
 export default App

@@ -1,12 +1,23 @@
 button{
-    background-color: black;
-    border: 1px solid yellow;
+    border: 1px solid;
     padding: 1em;
     border-radius: 1em;
-    color: white;
+    /* color: white; */
     cursor: pointer;
+}
+
+button.darkMode{
+    background-color: white;
+    border-color: yellow;
+    /* color: black; */
+    
+}
+button.lightMode{
+    background-color: #ccc;
+    border-color: black;
+    /* columns: white; */
 }
 button:hover{
     background-color: grey;
-    color: white;
+    /* color: white; */
 }
