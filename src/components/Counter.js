@@ -1,19 +1,22 @@
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import ThemeContext from "../context/ThemeContext";
 import './Counter.css'
+
 function Counter(){
+    // yaha reference store kar liya therefore jab re-render hoga Counter
+    // component to save rahega puraana value
+    let num = useRef(5); 
     const mode = useContext(ThemeContext)
     let [number, setNumber] = useState(0);
 
     function increment(e){
         e.stopPropagation();
-        setTimeout(function(){
-            setNumber(number=>number+1);
-        },2000)
+        setNumber(number+1);
+        num.current++; // .current se value aata hai reference ka
     }
     return(
         <>  
-        <h1 className={mode}>{number}</h1>
+        <h1 className={mode}>{number} {num.current}</h1>
         <button  onClick={increment}>ADD</button>
         </>
     );
